@@ -16,9 +16,6 @@ class MapsWidgetState extends State<MapsWidget> {
   void onMapCreatedFunc(GoogleMapController newController) {
     controller = newController;
     location.onLocationChanged.listen((l) {
-      //   setState(() {
-      //     initialCameraPosition = LatLng(l.latitude!, l.longitude!);
-      //   });
       controller.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(target: LatLng(l.latitude!, l.longitude!), zoom: 13),

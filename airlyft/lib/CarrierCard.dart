@@ -1,17 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-// class CarrierCard extends StatelessWidget {
-//   CarrierCard();
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//         color: Color(0xFFF3AD7A),
-//         child: Row(
-//           children: [],
-//         ));
-//   }
-// }
 class CarrierCard extends StatelessWidget {
   CarrierCard(
       {Key? key,

@@ -1,3 +1,5 @@
+import 'package:airlyft/CarrierScreen.dart';
+import 'package:airlyft/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:airlyft/logsignscreen.dart';
 
@@ -117,4 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  void gotoLuggageInfoScreen(BuildContext context) {}
 }

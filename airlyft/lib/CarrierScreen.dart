@@ -1,3 +1,4 @@
+import 'package:airlyft/LuggageScreen.dart';
 import 'package:airlyft/MeetingTimeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,7 @@ class CarrierScreen extends StatelessWidget {
                                         BorderSide(color: Color(0xFFFBEFD9))))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MeetingTimeScreen()));
+                              builder: (context) => LuggageScreen()));
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(

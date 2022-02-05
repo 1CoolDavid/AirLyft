@@ -10,7 +10,20 @@ class luggageInfoScreen extends StatelessWidget {
         body: Column(
           children: <Widget>[
             Text(
-              "How many bags do you have?", 
+              "How many luggages do you have?",
+            ),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Enter number of luggages",
+              ),
+            ),
+            Text(
+              "How heavy is your luggage?",
+            ),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Enter total weight in lbs",
+              ),
             ),
           ],
         ));

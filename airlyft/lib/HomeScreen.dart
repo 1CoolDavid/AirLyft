@@ -4,6 +4,8 @@ import 'dart:convert';
 import './LoginScreen.dart';
 import "./PaymentScreen.dart";
 import "./LuggageScreen.dart";
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -14,7 +16,7 @@ class HomeScreen extends StatelessWidget {
             child: Container(
                 margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 45.0),
                 width: 350.0,
-                height: 900.0,
+                height: 700.0,
                 child: Column(children: <Widget>[
                   Container(
                       padding: EdgeInsets.only(top: 20.0),
@@ -44,12 +46,11 @@ class HomeScreen extends StatelessWidget {
                       padding: EdgeInsets.only(top: 20.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
                           image: DecorationImage(
                               image: MemoryImage(base64Decode(planeImage)),
                               fit: BoxFit.fill),
                         ),
-                        width: 160,
+                        width: 230,
                         height: 160,
                       )),
                   Container(
@@ -117,6 +118,7 @@ class HomeScreen extends StatelessWidget {
                                       side: BorderSide(
                                           color: Color(0xFFFBEFD9))))),
                           onPressed: () {
+                            FlightApiCall();
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => LuggageScreen()));
                           },
@@ -129,6 +131,8 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 20.0)))))
                 ]))));
   }
+
+  void FlightApiCall() {}
 }
 
 final String planeImage =

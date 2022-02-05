@@ -1,3 +1,4 @@
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:airlyft/LuggageScreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -23,7 +24,10 @@ class HomeScreen extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.only(top: 20.0),
                       child: Text(
-                        "Hey ",
+                        "Hey " +
+                            (context.watch<AppModel>().customer?.firstName)! +
+                            " " +
+                            (context.watch<AppModel>().customer?.lastName)!,
                         style: TextStyle(
                           fontFamily: "Roboto",
                           fontStyle: FontStyle.normal,

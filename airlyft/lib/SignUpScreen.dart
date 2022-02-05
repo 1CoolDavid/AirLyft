@@ -30,9 +30,9 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     )),
                 Container(
-                    padding: EdgeInsets.only(top: 50.0),
+                    padding: EdgeInsets.only(top: 30.0),
                     child: Text(
-                      "Enter your email                                  ",
+                      "Enter Your Full Name                                  ",
                       style: TextStyle(
                         fontFamily: "Roboto",
                         fontStyle: FontStyle.normal,
@@ -43,9 +43,10 @@ class SignUpScreen extends StatelessWidget {
                     )),
                 Container(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 35.0),
+                    height: 80,
                     child: TextField(
-                      style: TextStyle(fontSize: 7),
+                      style: TextStyle(fontSize: 20),
                       decoration: InputDecoration(
                         hintText: "",
                         fillColor: Color(0xFFfbefd9),
@@ -56,9 +57,9 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     )),
                 Container(
-                    padding: EdgeInsets.only(top: 25.0),
+                    padding: EdgeInsets.only(top: 8.0),
                     child: Text(
-                      "Enter a password                                ",
+                      "Enter your email                                          ",
                       style: TextStyle(
                         fontFamily: "Roboto",
                         fontStyle: FontStyle.normal,
@@ -69,9 +70,10 @@ class SignUpScreen extends StatelessWidget {
                     )),
                 Container(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 35.0),
+                    height: 80,
                     child: TextField(
-                      style: TextStyle(fontSize: 7),
+                      style: TextStyle(fontSize: 20),
                       decoration: InputDecoration(
                         hintText: "",
                         fillColor: Color(0xFFfbefd9),
@@ -82,9 +84,9 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     )),
                 Container(
-                    padding: EdgeInsets.only(top: 10.0),
+                    padding: EdgeInsets.only(top: 8.0),
                     child: Text(
-                      "Confirm your password                     ",
+                      "Enter a password                                         ",
                       style: TextStyle(
                         fontFamily: "Roboto",
                         fontStyle: FontStyle.normal,
@@ -95,9 +97,37 @@ class SignUpScreen extends StatelessWidget {
                     )),
                 Container(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 35.0),
+                    height: 80,
                     child: TextField(
-                      style: TextStyle(fontSize: 7),
+                      style: TextStyle(fontSize: 20),
+                      decoration: InputDecoration(
+                        hintText: "",
+                        fillColor: Color(0xFFfbefd9),
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    )),
+                Container(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      "Confirm your password                              ",
+                      style: TextStyle(
+                        fontFamily: "Roboto",
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.0,
+                        color: Color(0xFFFBEFD9),
+                      ),
+                    )),
+                Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 35.0),
+                    height: 80,
+                    child: TextField(
+                      style: TextStyle(fontSize: 20),
                       decoration: InputDecoration(
                         hintText: "",
                         fillColor: Color(0xFFfbefd9),
@@ -109,7 +139,7 @@ class SignUpScreen extends StatelessWidget {
                     )),
                 Container(
                     padding:
-                        EdgeInsets.symmetric(vertical: 40.0, horizontal: 35.0),
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
                     child: TextButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(

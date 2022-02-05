@@ -1,43 +1,45 @@
 import 'dart:async';
+import 'package:airlyft/Data-Manager/Firebase/real_database.dart';
+import 'package:airlyft/Data-Manager/Structures/customer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth {
-  static Future<int> register(
-      String email, String password, String userName) async {
-    User? creds = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password)
-        .then((UserCredential authResult) {
-      return authResult.user;
-    }).catchError((error) => null);
-    if (creds == null)
-      return 0;
-    else {
-      return 0;
+  static Future<String?> register(String email, String password) async {
+    User? user;
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: "barry.allen@example.com",
+              password: "SuperSecretPassword!");
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
     }
+    return user?.uid;
   }
 
   static Future<String?> signIn(String email, String password) async {
     User? user;
     try {
-      if (FirebaseAuth.instance != null) print("MAJOR PROBLEM");
-      user = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) => value.user);
-    } on Exception catch (e) {
-      print(e.toString());
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: "barry.allen@example.com",
+              password: "SuperSecretPassword!");
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
     }
-
-    // if (user == null) return null;
-    //   Backend.User userRef = await FireStorer.getUserByUID(userCredential.user.uid).then((value) {
-    //     return value;
-    // }).catchError((error) {
-    //   return null;
-    // });
-    // if (userRef == null)
-    //   return null;
-    // else
-    //   setUser(userRef);
-    // return userCredential.user.uid;
+    return user?.uid;
   }
 
   static Future<bool> changePassword(String newPassword) async {

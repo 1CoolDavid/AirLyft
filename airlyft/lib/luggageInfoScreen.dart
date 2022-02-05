@@ -5,16 +5,14 @@ class luggageInfoScreen extends StatelessWidget {
   Widget build(BuildContext ctxt) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Multi Page Application"),
+          title: Text("More Luggage Information"),
         ),
-        body: const Checkbox(
-          value: false,
-          onChanged: null,
-          // onChanged: (bool newValue) {
-          //   Navigator.push(
-          //     ctxt,
-          //     new MaterialPageRoute(builder: (ctxt) => new SecondScreen()),
-          //   );
+        body: Column(
+          children: <Widget>[
+            Text(
+              "How many bags do you have?", 
+            ),
+          ],
         ));
   }
 }

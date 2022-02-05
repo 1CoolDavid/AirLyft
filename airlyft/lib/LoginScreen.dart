@@ -1,3 +1,4 @@
+import 'package:airlyft/SignUpScreen.dart';
 import 'package:airlyft/meetingTimeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -94,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                                         BorderSide(color: Color(0xFFFBEFD9))))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MeetingTimeScreen()));
+                              builder: (context) => SignUpScreen()));
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(

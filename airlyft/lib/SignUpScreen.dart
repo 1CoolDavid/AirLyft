@@ -1,3 +1,4 @@
+import 'package:airlyft/CarrierScreen.dart';
 import 'package:airlyft/meetingTimeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -120,7 +121,7 @@ class SignUpScreen extends StatelessWidget {
                                         BorderSide(color: Color(0xFFFBEFD9))))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MeetingTimeScreen()));
+                              builder: (context) => CarrierScreen()));
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(

@@ -42,15 +42,15 @@ class LogSign extends StatelessWidget {
                       ),
                     )),
                 Container(
-                    padding: EdgeInsets.only(left: 20.0, top: 40.0),
+                    padding: EdgeInsets.only(left: 20.0, top: 30.0),
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             image: MemoryImage(base64Decode(traveler)),
                             fit: BoxFit.fill),
                       ),
-                      width: 250,
-                      height: 180,
+                      width: 200,
+                      height: 150,
                     )),
                 Container(
                     padding: EdgeInsets.only(top: 90.0),

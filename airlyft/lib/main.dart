@@ -1,4 +1,5 @@
 import 'package:airlyft/LuggageInfoScreen.dart';
+import 'package:airlyft/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -108,8 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => LuggageInfoScreen()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => SignUpScreen()));
+          // MaterialPageRoute(builder: (context) => LuggageInfoScreen()));
         },
         // _incrementCounter,
         tooltip: 'Increment',

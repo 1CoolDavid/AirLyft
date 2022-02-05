@@ -7,9 +7,9 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Color(0xFFfbefd9),
         body: Container(
-            margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 35.0),
-            width: 316.0,
-            height: 668.0,
+            margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 45.0),
+            width: 350.0,
+            height: 700.0,
             decoration: BoxDecoration(
               color: Color(0xFF5D5B56),
               borderRadius: BorderRadius.all(const Radius.circular(31.0)),
@@ -29,7 +29,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     )),
                 Container(
-                    padding: EdgeInsets.only(top: 75.0),
+                    padding: EdgeInsets.only(top: 50.0),
                     child: Text(
                       "Enter your email                                  ",
                       style: TextStyle(
@@ -44,6 +44,7 @@ class SignUpScreen extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
                     child: TextField(
+                      style: TextStyle(fontSize: 7),
                       decoration: InputDecoration(
                         hintText: "",
                         fillColor: Color(0xFFfbefd9),
@@ -69,6 +70,7 @@ class SignUpScreen extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
                     child: TextField(
+                      style: TextStyle(fontSize: 7),
                       decoration: InputDecoration(
                         hintText: "",
                         fillColor: Color(0xFFfbefd9),
@@ -94,6 +96,7 @@ class SignUpScreen extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
                     child: TextField(
+                      style: TextStyle(fontSize: 7),
                       decoration: InputDecoration(
                         hintText: "",
                         fillColor: Color(0xFFfbefd9),
@@ -105,14 +108,14 @@ class SignUpScreen extends StatelessWidget {
                     )),
                 Container(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
+                        EdgeInsets.symmetric(vertical: 40.0, horizontal: 35.0),
                     child: TextButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 Color(0xFF5D5B56)),
                             shape: MaterialStateProperty
                                 .all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderRadius: BorderRadius.circular(30.0),
                                     side:
                                         BorderSide(color: Color(0xFFFBEFD9))))),
                         onPressed: () {
@@ -121,7 +124,7 @@ class SignUpScreen extends StatelessWidget {
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 35.0),
+                                vertical: 10.0, horizontal: 55.0),
                             child: Text('Sign Up',
                                 style: TextStyle(
                                     color: Color(0xFFFBEFD9),

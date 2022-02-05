@@ -1,7 +1,7 @@
 import 'package:airlyft/CarrierScreen.dart';
 import 'package:airlyft/LoginScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:airlyft/logsignscreen.dart';
+import 'package:airlyft/LoginSignUp.dart';
 
 void main() {
   runApp(const MyApp());

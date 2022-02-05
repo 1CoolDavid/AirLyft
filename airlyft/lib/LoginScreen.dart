@@ -1,8 +1,21 @@
+import 'package:airlyft/HomeScreen.dart';
+import 'package:airlyft/Providers/AirlyftProvider.dart';
 import 'package:airlyft/SignUpScreen.dart';
 import 'package:airlyft/meetingTimeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final emailTextController = TextEditingController();
+  final passwordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +59,7 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 35.0),
                         child: TextField(
+                          controller: emailTextController,
                           style: TextStyle(fontSize: 20),
                           decoration: InputDecoration(
                             hintText: "",
@@ -72,6 +86,7 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 35.0),
                         child: TextField(
+                          controller: passwordTextController,
                           style: TextStyle(fontSize: 20),
                           decoration: InputDecoration(
                             hintText: "",
@@ -96,8 +111,7 @@ class LoginScreen extends StatelessWidget {
                                             side: BorderSide(
                                                 color: Color(0xFFFBEFD9))))),
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => SignUpScreen()));
+                              onButtonClick(context);
                             },
                             child: Container(
                                 padding: EdgeInsets.symmetric(
@@ -108,5 +122,11 @@ class LoginScreen extends StatelessWidget {
                                         fontSize: 20.0)))))
                   ],
                 ))));
+  }
+
+  void onButtonClick(BuildContext context) {
+    context.read<AirLyftProvider>().setName(emailTextController.text);
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 }

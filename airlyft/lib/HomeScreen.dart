@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'dart:convert';
 import './LoginScreen.dart';
 import "./PaymentScreen.dart";
+import 'package:airlyft/Providers/AirlyftProvider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -18,7 +20,7 @@ class HomeScreen extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.only(top: 20.0),
                       child: Text(
-                        "Hey Gaurang",
+                        "Hey " + context.watch<AirLyftProvider>().name,
                         style: TextStyle(
                           fontFamily: "Roboto",
                           fontStyle: FontStyle.normal,

@@ -1,6 +1,7 @@
 import 'package:airlyft/SignUpScreen.dart';
 import 'package:airlyft/meetingTimeScreen.dart';
 import 'package:flutter/material.dart';
+import './HomeScreen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -97,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                                                 color: Color(0xFFFBEFD9))))),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => SignUpScreen()));
+                                  builder: (context) => HomeScreen()));
                             },
                             child: Container(
                                 padding: EdgeInsets.symmetric(

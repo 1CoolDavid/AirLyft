@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './HomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -106,10 +107,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => navigateToHome(context),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+void navigateToHome(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+    return HomeScreen();
+  }));
 }

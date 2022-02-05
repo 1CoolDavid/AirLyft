@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "339352067259",
+    "firebase_url": "https://airlyft-8565f-default-rtdb.firebaseio.com",
+    "project_id": "airlyft-8565f",
+    "storage_bucket": "airlyft-8565f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339352067259:android:db78e8af28cbe3ee7cdd9e",
+        "android_client_info": {
+          "package_name": "com.example.airlyft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339352067259-k16gvuuf7l19bjtf6ls7qcvk1k1mc0iq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.airlyft",
+            "certificate_hash": "d6010696afc6764094e28d89e0a5db8502de56d4"
+          }
+        },
+        {
+          "client_id": "339352067259-m0tdbfgjuinst5oslurb70pin2ruhgre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSiZIB2FiMR9PieoPPIVZB4n4IRknpj1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339352067259-m0tdbfgjuinst5oslurb70pin2ruhgre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

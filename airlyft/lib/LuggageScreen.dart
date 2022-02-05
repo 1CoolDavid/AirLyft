@@ -278,8 +278,7 @@ class LuggageScreen extends StatelessWidget {
                                                 color: Color(0xFFFBEFD9))))),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      MeetingInformationScreen()));
+                                  builder: (context) => CarrierScreen()));
                             },
                             child: Container(
                                 padding: EdgeInsets.symmetric(

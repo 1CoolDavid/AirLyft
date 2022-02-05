@@ -3,6 +3,7 @@ import 'package:airlyft/MeetingTimeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'CarrierCard.dart';
+import 'PaymentScreen.dart';
 
 class CarrierScreen extends StatelessWidget {
   @override
@@ -88,7 +89,7 @@ class CarrierScreen extends StatelessWidget {
                                         BorderSide(color: Color(0xFFFBEFD9))))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LuggageScreen()));
+                              builder: (context) => PaymentScreen()));
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(

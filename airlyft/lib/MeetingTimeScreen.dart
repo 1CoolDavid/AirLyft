@@ -1,29 +1,28 @@
-import 'package:airlyft/meetingTimeScreen.dart';
 import 'package:flutter/material.dart';
 
-class LuggageInfoScreen extends StatelessWidget {
+class MeetingTimeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("More Luggage Information"),
+          title: Text("Where/when should we meet?"),
         ),
         body: Column(
           children: <Widget>[
             Text(
-              "How many luggages do you have?",
+              "Which terminal is your flight?",
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: "2",
+                hintText: "Terminal 2",
               ),
             ),
             Text(
-              "What's the total weight of your luggage (lbs)?",
+              "What's the door closest to you?",
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: "100",
+                hintText: "Door 8",
               ),
             ),
             TextButton(

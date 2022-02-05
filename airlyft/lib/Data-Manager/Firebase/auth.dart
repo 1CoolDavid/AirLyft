@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:airlyft/Data-Manager/Firebase/real_database.dart';
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:airlyft/Data-Manager/Structures/customer.dart';
+import 'package:airlyft/Data-Manager/locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth {
-  static Future<String?> register(String email, String password) async {
+  static Future<String?> register(
+      String email, String password, String name) async {
     User? user;
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -18,6 +21,17 @@ class Auth {
       }
     } catch (e) {
       print(e);
+    }
+    if (user != null) {
+      Customer customer = Customer(name.substring(0, name.indexOf(" ")),
+          name.substring(name.indexOf(" ") + 1), user.uid);
+      await Database.setCustomer(customer).then((value) {
+        if (value) {
+          locator.get<AppModel>().updateCustomer(customer);
+        } else {
+          return null;
+        }
+      });
     }
     return user?.uid;
   }
@@ -35,7 +49,17 @@ class Auth {
         print('Wrong password provided for that user.');
       }
     }
-    return user?.uid;
+    if (user != null) {
+      Customer? customer = await Database.getCustomer(user.uid)
+          .then((value) => value)
+          .onError((error, stackTrace) {
+        print(stackTrace);
+        return null;
+      });
+      locator.get<AppModel>().updateCustomer(customer);
+      return customer?.uid;
+    }
+    return null;
   }
 
   static Future<bool> changePassword(String newPassword) async {

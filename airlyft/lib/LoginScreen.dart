@@ -157,8 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           .catchError((error) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
-                                            content: Text(
-                                                "Login failed, please try again")));
+                                            content: Text("Login failed")));
                                   });
                                   if (uid != null && uid.isNotEmpty) {
                                     Navigator.of(context).push(

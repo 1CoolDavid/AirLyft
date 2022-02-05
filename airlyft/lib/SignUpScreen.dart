@@ -228,17 +228,14 @@ class SignUpScreen extends StatelessWidget {
                                       return;
                                     }
                                   }
-                                  print(_email);
-                                  print(_password);
-                                  String? uid =
-                                      await Auth.register(_email, _password)
-                                          .catchError((error) {
+                                  String? uid = await Auth.register(
+                                          _email, _password, _name)
+                                      .catchError((error) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
                                             content: Text(
                                                 "Registration failed, please try again")));
                                   });
-                                  print(uid == null);
                                   if (uid != null && uid.isNotEmpty) {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(

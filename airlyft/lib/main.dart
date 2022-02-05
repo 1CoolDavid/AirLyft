@@ -2,6 +2,7 @@ import 'package:airlyft/CarrierScreen.dart';
 import 'package:airlyft/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:airlyft/LoginSignUp.dart';
+import './HomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -121,4 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void gotoLuggageInfoScreen(BuildContext context) {}
+}
+
+void navigateToHome(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+    return HomeScreen();
+  }));
 }

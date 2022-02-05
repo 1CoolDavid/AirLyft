@@ -1,11 +1,18 @@
-import 'package:airlyft/CarrierScreen.dart';
-import 'package:airlyft/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:airlyft/MainScreen.dart';
 import './HomeScreen.dart';
+import 'package:provider/provider.dart';
+import 'package:airlyft/Providers/AirlyftProvider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => AirLyftProvider(),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

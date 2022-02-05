@@ -6,6 +6,8 @@ import "./PaymentScreen.dart";
 import "./LuggageScreen.dart";
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'package:airlyft/Providers/AirlyftProvider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -21,7 +23,7 @@ class HomeScreen extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.only(top: 20.0),
                       child: Text(
-                        "Hey Gaurang",
+                        "Hey " + context.watch<AirLyftProvider>().name,
                         style: TextStyle(
                           fontFamily: "Roboto",
                           fontStyle: FontStyle.normal,

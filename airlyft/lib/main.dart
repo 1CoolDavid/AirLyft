@@ -1,3 +1,4 @@
+import 'package:airlyft/luggageInfoScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -106,10 +107,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: gotoLuggageScreen,
+        // _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void gotoLuggageScreen() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => luggageInfoScreen()));
   }
 }

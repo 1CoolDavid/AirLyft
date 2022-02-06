@@ -122,6 +122,13 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "This is a required field";
+                              } else {
+                                return null;
+                              }
+                            },
                             onSaved: (saved) => depAir = saved as String,
                           )),
                       Container(
@@ -150,6 +157,13 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "This is a required field";
+                              } else {
+                                return null;
+                              }
+                            },
                             onSaved: (saved) => theDate = saved as String,
                           )),
                       Container(
@@ -178,6 +192,13 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "This is a required field";
+                              } else {
+                                return null;
+                              }
+                            },
                             onSaved: (saved) => flightNum = saved as String,
                           )),
                       Container(
@@ -234,13 +255,18 @@ class HomeScreen extends StatelessWidget {
                                       flightNum,
                                     ).then((value) => (value));
                                     print(carva as String);
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => LuggageScreen(
-                                                theDate,
-                                                depAir,
-                                                flightNum,
-                                                carva)));
+                                    if (carva != "") {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LuggageScreen(theDate, depAir,
+                                                      flightNum, carva)));
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "These are not correct values. Input New Ones")));
+                                    }
                                   }
                                 }
                               },

@@ -47,6 +47,9 @@ class PaymentPage extends StatelessWidget {
         log(jsonResponse.toString());
 
         //2. initialize the payment sheet
+        Stripe.publishableKey =
+            "pk_test_51KPtH0FaVswPls9nGZBr9JvaKFQA4G3LB588Vv0dCQnA05Ou13eyTF2hRZMlW3H48gaFkI9XVDBeDDcV0OedjnIz002zY5Wwr3";
+        await Stripe.instance.applySettings();
         await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
             paymentIntentClientSecret: jsonResponse['paymentIntent'],
@@ -72,10 +75,7 @@ class PaymentPage extends StatelessWidget {
             ),
           );
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content: Text('Congratulations your payment is completed')),
-          );
+          print(e.toString());
         }
       }
     }

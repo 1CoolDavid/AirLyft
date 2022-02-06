@@ -246,7 +246,7 @@ class SignUpScreen extends StatelessWidget {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CarrierScreen()));
+                                                HomeScreen()));
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(

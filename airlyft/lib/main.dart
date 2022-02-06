@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:airlyft/Data-Manager/Models/AppModel.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:developer';
+import "package:airlyft/MainScreen.dart";
 
-void main() async {
+Future<void> main() async {
   // runApp(ChangeNotifierProvider(create: (_) => null, child: const MyApp()));
   runApp(ChangeNotifierProvider(
     create: (context) => AppModel(),
@@ -13,6 +18,10 @@ void main() async {
   ));
   setUpLocator();
   await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      "pk_test_51JT7jkCTAUDjRNFVfafy4Gskx1KzUNk8nPj8T51zzCPE18fA17DOFO6MqSZVTCxhVCSWGwouDSe0yjcObAznHLW600VBoGyDcg";
+  await Stripe.instance.applySettings();
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +41,7 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.blue,
         ),
         home: LogSign());
   }

@@ -1,12 +1,35 @@
 import 'package:airlyft/CarrierScreen.dart';
+import 'package:airlyft/Data-Manager/Firebase/real_database.dart';
+import 'package:airlyft/Data-Manager/Structures/customer.dart';
+import 'package:airlyft/Data-Manager/Structures/requestData.dart';
 import 'package:airlyft/MeetingInformationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
+import 'package:provider/provider.dart';
 
 class LuggageScreen extends StatelessWidget {
+  final bagsTextController = TextEditingController();
+  final weightTextController = TextEditingController();
+
   @override
+  String? a;
+  String? b;
+  String? c;
+  String? d;
+
+  LuggageScreen(String ab, String bb, String bc, String bd) {
+    a = ab;
+    b = bb;
+    c = bc;
+    d = bd;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFfbefd9),
@@ -104,10 +127,11 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 33.0, left: 30.0),
                                   child: Text(
-                                    (context
-                                        .watch<AppModel>()
-                                        .request
-                                        ?.fromAirportCity)!,
+                                    // (context
+                                    //     .watch<AppModel>()
+                                    //     .request
+                                    //     ?.fromAirportCity)!,
+                                    a as String,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -121,10 +145,7 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 16.0, left: 30.0),
                                   child: Text(
-                                    (context
-                                        .watch<AppModel>()
-                                        .request
-                                        ?.fromAirportCode)!,
+                                    b as String,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -138,10 +159,7 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 34.0, left: 30.0),
                                   child: Text(
-                                    (context
-                                        .watch<AppModel>()
-                                        .request
-                                        ?.toAirportCity)!,
+                                    c as String,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -155,10 +173,7 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 15.0, left: 30.0),
                                   child: Text(
-                                    (context
-                                        .watch<AppModel>()
-                                        .request
-                                        ?.toAirportCode)!,
+                                    d as String,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -193,6 +208,7 @@ class LuggageScreen extends StatelessWidget {
                             Row(children: [
                               Flexible(
                                   child: TextField(
+                                controller: bagsTextController,
                                 style: TextStyle(fontSize: 20),
                                 decoration: InputDecoration(
                                   hintText: "",
@@ -246,6 +262,7 @@ class LuggageScreen extends StatelessWidget {
                             Row(children: [
                               Flexible(
                                   child: TextField(
+                                controller: weightTextController,
                                 style: TextStyle(fontSize: 20),
                                 decoration: InputDecoration(
                                   hintText: "",
@@ -291,8 +308,7 @@ class LuggageScreen extends StatelessWidget {
                                             side: BorderSide(
                                                 color: Color(0xFFFBEFD9))))),
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => CarrierScreen()));
+                              onButtonClick(context);
                             },
                             child: Container(
                                 padding: EdgeInsets.symmetric(
@@ -303,5 +319,18 @@ class LuggageScreen extends StatelessWidget {
                                         fontSize: 20.0)))))
                   ],
                 ))));
+  }
+
+  void onButtonClick(BuildContext context) {
+    int bags = int.parse(bagsTextController.text);
+    int weight = int.parse(weightTextController.text);
+
+    RequestData r = context.read<AppModel>().request!;
+    r.bagTotalWeight = weight;
+    r.checkNumBags = bags;
+    Database.setRequest(r);
+
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => CarrierScreen()));
   }
 }

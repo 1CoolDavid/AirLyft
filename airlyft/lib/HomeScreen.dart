@@ -10,6 +10,38 @@ import 'dart:async';
 import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:provider/provider.dart';
 
+final String API_key = "23293200ccc88bfac4f461504cfc69e1";
+
+final _formKey = GlobalKey<FormState>();
+
+Future<String> arriveAir(date, dep_air, flight_num) async {
+  // make request
+  var url = Uri.parse("http://api.aviationstack.com/v1/flights?access_key=" +
+      API_key +
+      "&flight_number=" +
+      flight_num);
+  final response = await http.get(url);
+
+  // sample info available in response
+  if (response.statusCode == 200) {
+    Map<String, dynamic> data = jsonDecode(response.body);
+    for (int i = 0; i < data["pagination"]["count"]; i++) {
+      if (data["data"][i]["flight_date"] == date &&
+          data["data"][i]["departure"]["airport"] == dep_air &&
+          data["data"][i]["flight"]["number"] == flight_num) {
+        return Future.value(data["data"][i]["arrival"]["airport"]);
+      }
+    }
+    return Future.value("");
+  } else {
+    return Future.value("");
+  }
+}
+
+String theDate = "";
+String depAir = "";
+String flightNum = "";
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,123 +51,233 @@ class HomeScreen extends StatelessWidget {
             child: Container(
                 margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 45.0),
                 width: 350.0,
-                height: 900.0,
-                child: Column(children: <Widget>[
-                  Container(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: Text(
-                        "Hey " +
-                            (context.watch<AppModel>().customer?.firstName)! +
-                            " " +
-                            (context.watch<AppModel>().customer?.lastName)!,
-                        style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40.0,
-                          color: Color(0xFF5D5B56),
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.only(top: 40.0),
-                      child: Text(
-                        "Let’s get you a Carrier and make your journey delightful! ",
-                        style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                          color: Color(0xFF5D5B56),
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: MemoryImage(base64Decode(planeImage)),
-                              fit: BoxFit.fill),
-                        ),
-                        width: 230,
-                        height: 160,
-                      )),
-                  Container(
-                      padding: EdgeInsets.only(top: 40.0),
-                      child: Text(
-                        "Enter your flight number",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
-                          color: Color(0xFF5D5B56),
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 35.0),
-                      child: TextField(
-                        style: TextStyle(fontSize: 15),
-                        decoration: InputDecoration(
-                          hintText: "",
-                          fillColor: Color(0xFFfbefd9),
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        "Book a carrier on arrival?",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
-                          color: Color(0xFF5D5B56),
-                        ),
-                      )),
-                  Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-                      child: DropdownButton<String>(
-                        items: <String>["Yes", "No"].map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: "Yes",
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (_) {},
-                      )),
-                  Container(
-                      padding: EdgeInsets.only(top: 0.0),
-                      child: TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color(0xFF5D5B56)),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      side: BorderSide(
-                                          color: Color(0xFFFBEFD9))))),
-                          onPressed: () {
-                            FlightApiCall();
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => LuggageScreen()));
-                          },
+                height: 1200.0,
+                child: Form(
+                    key: _formKey,
+                    child: Column(children: <Widget>[
+                      Container(
+                          padding: EdgeInsets.only(top: 20.0),
+                          child: Text(
+                            "Hey " +
+                                (context
+                                    .watch<AppModel>()
+                                    .customer
+                                    ?.firstName)! +
+                                " " +
+                                (context.watch<AppModel>().customer?.lastName)!,
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40.0,
+                              color: Color(0xFF5D5B56),
+                            ),
+                          )),
+                      Container(
+                          padding: EdgeInsets.only(top: 40.0),
+                          child: Text(
+                            "Let’s get you a Carrier and make your journey delightful! ",
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Color(0xFF5D5B56),
+                            ),
+                          )),
+                      Container(
+                          padding: EdgeInsets.only(top: 20.0),
                           child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 55.0),
-                              child: Text('Next',
-                                  style: TextStyle(
-                                      color: Color(0xFFFBEFD9),
-                                      fontSize: 20.0)))))
-                ]))));
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: MemoryImage(base64Decode(planeImage)),
+                                  fit: BoxFit.fill),
+                            ),
+                            width: 230,
+                            height: 160,
+                          )),
+                      Container(
+                          padding: EdgeInsets.only(top: 40.0),
+                          child: Text(
+                            "Enter your depart airport",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                              color: Color(0xFF5D5B56),
+                            ),
+                          )),
+                      Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 35.0),
+                          child: TextFormField(
+                            style: TextStyle(fontSize: 15),
+                            decoration: InputDecoration(
+                              hintText: "",
+                              fillColor: Color(0xFFfbefd9),
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "This is a required field";
+                              } else {
+                                return null;
+                              }
+                            },
+                            onSaved: (saved) => depAir = saved as String,
+                          )),
+                      Container(
+                          padding: EdgeInsets.only(top: 40.0),
+                          child: Text(
+                            "Enter your flight date(xxxx-xx-xx)",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                              color: Color(0xFF5D5B56),
+                            ),
+                          )),
+                      Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 35.0),
+                          child: TextFormField(
+                            style: TextStyle(fontSize: 15),
+                            decoration: InputDecoration(
+                              hintText: "",
+                              fillColor: Color(0xFFfbefd9),
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "This is a required field";
+                              } else {
+                                return null;
+                              }
+                            },
+                            onSaved: (saved) => theDate = saved as String,
+                          )),
+                      Container(
+                          padding: EdgeInsets.only(top: 40.0),
+                          child: Text(
+                            "Enter your flight number",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                              color: Color(0xFF5D5B56),
+                            ),
+                          )),
+                      Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 35.0),
+                          child: TextFormField(
+                            style: TextStyle(fontSize: 15),
+                            decoration: InputDecoration(
+                              hintText: "",
+                              fillColor: Color(0xFFfbefd9),
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "This is a required field";
+                              } else {
+                                return null;
+                              }
+                            },
+                            onSaved: (saved) => flightNum = saved as String,
+                          )),
+                      Container(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Text(
+                            "Book a carrier on arrival?",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                              color: Color(0xFF5D5B56),
+                            ),
+                          )),
+                      Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.0, horizontal: 0.0),
+                          child: DropdownButton<String>(
+                            items: <String>["Yes", "No"].map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: "Yes",
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (_) {},
+                          )),
+                      Container(
+                          padding: EdgeInsets.only(top: 0.0),
+                          child: TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Color(0xFF5D5B56)),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0),
+                                          side: BorderSide(
+                                              color: Color(0xFFFBEFD9))))),
+                              onPressed: () async {
+                                FlightApiCall();
+                                bool? data = _formKey.currentState?.validate();
+                                if (data == null || !data) {
+                                  return;
+                                } else {
+                                  FormState? state = _formKey.currentState;
+                                  if (state != null) {
+                                    state.save();
+                                    print("happyness");
+                                    String carva = await arriveAir(
+                                      theDate,
+                                      depAir,
+                                      flightNum,
+                                    ).then((value) => (value));
+                                    print(carva as String);
+                                    if (carva != "") {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LuggageScreen(theDate, depAir,
+                                                      flightNum, carva)));
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "These are not correct values. Input New Ones")));
+                                    }
+                                  }
+                                }
+                              },
+                              child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10.0, horizontal: 55.0),
+                                  child: Text('Next',
+                                      style: TextStyle(
+                                          color: Color(0xFFFBEFD9),
+                                          fontSize: 20.0)))))
+                    ])))));
   }
 
   void FlightApiCall() {}

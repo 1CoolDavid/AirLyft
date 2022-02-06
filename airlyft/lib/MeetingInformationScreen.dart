@@ -74,7 +74,8 @@ class MeetingInformationScreen extends StatelessWidget {
                                         BorderSide(color: Color(0xFFFBEFD9))))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LuggageScreen()));
+                              builder: (context) =>
+                                  LuggageScreen("", "", "", "")));
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(

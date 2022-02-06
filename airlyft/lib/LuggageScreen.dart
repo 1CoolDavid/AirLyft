@@ -2,6 +2,8 @@ import 'package:airlyft/CarrierScreen.dart';
 import 'package:airlyft/MeetingInformationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
+import 'package:provider/provider.dart';
 
 class LuggageScreen extends StatelessWidget {
   @override
@@ -102,7 +104,10 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 33.0, left: 30.0),
                                   child: Text(
-                                    "New York City, NY",
+                                    (context
+                                        .watch<AppModel>()
+                                        .request
+                                        ?.fromAirportCity)!,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -116,7 +121,10 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 16.0, left: 30.0),
                                   child: Text(
-                                    "JFK",
+                                    (context
+                                        .watch<AppModel>()
+                                        .request
+                                        ?.fromAirportCode)!,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -130,7 +138,10 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 34.0, left: 30.0),
                                   child: Text(
-                                    "Pittsburgh, PA",
+                                    (context
+                                        .watch<AppModel>()
+                                        .request
+                                        ?.toAirportCity)!,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -144,7 +155,10 @@ class LuggageScreen extends StatelessWidget {
                                   padding:
                                       EdgeInsets.only(top: 15.0, left: 30.0),
                                   child: Text(
-                                    "PIT",
+                                    (context
+                                        .watch<AppModel>()
+                                        .request
+                                        ?.toAirportCode)!,
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,

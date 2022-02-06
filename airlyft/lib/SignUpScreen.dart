@@ -135,6 +135,9 @@ class SignUpScreen extends StatelessWidget {
                                 vertical: 15.0, horizontal: 35.0),
                             height: 80,
                             child: TextFormField(
+                              obscureText: true,
+                              enableSuggestions: false,
+                              autocorrect: false,
                               style: const TextStyle(fontSize: 20),
                               decoration: InputDecoration(
                                 hintText: "",
@@ -172,6 +175,9 @@ class SignUpScreen extends StatelessWidget {
                                 vertical: 15.0, horizontal: 35.0),
                             height: 80,
                             child: TextFormField(
+                              obscureText: true,
+                              enableSuggestions: false,
+                              autocorrect: false,
                               style: const TextStyle(fontSize: 20),
                               decoration: InputDecoration(
                                 hintText: "",

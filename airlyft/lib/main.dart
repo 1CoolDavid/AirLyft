@@ -2,9 +2,15 @@ import 'package:airlyft/Data-Manager/locator.dart';
 import 'package:airlyft/MainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 
 void main() async {
-  runApp(const MyApp());
+  // runApp(ChangeNotifierProvider(create: (_) => null, child: const MyApp()));
+  runApp(ChangeNotifierProvider(
+    create: (context) => AppModel(),
+    child: MyApp(),
+  ));
   setUpLocator();
   await Firebase.initializeApp();
 }

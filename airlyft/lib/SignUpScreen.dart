@@ -1,9 +1,9 @@
 import 'package:airlyft/CarrierScreen.dart';
 import 'package:airlyft/Data-Manager/Firebase/auth.dart';
 import 'package:airlyft/Data-Manager/Structures/customer.dart';
+import 'package:airlyft/LoginScreen.dart';
 import 'package:airlyft/meetingTimeScreen.dart';
 import 'package:flutter/material.dart';
-import './HomeScreen.dart';
 
 class SignUpScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -246,7 +246,7 @@ class SignUpScreen extends StatelessWidget {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CarrierScreen()));
+                                                LoginScreen()));
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(

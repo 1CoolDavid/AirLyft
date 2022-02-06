@@ -1,4 +1,5 @@
 import 'package:airlyft/HomeScreen.dart';
+import 'package:airlyft/LuggageScreen.dart';
 import 'package:airlyft/SignUpScreen.dart';
 import 'package:airlyft/meetingTimeScreen.dart';
 import 'package:flutter/material.dart';
@@ -166,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                HomeScreen()));
+                                                LuggageScreen()));
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(

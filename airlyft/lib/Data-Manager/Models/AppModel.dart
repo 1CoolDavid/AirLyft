@@ -4,8 +4,9 @@ import '../Structures/customer.dart';
 import '../Structures/requestData.dart';
 
 class AppModel extends ChangeNotifier {
-  static Customer? currentCustomer;
-  static RequestData? currentRequest;
+  static Customer? currentCustomer =
+      new Customer("firstName", "lastName", "uid");
+  static RequestData? currentRequest = new RequestData();
 
   updateCustomer(Customer? c) {
     currentCustomer = c;

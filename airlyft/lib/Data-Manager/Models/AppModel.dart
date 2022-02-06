@@ -18,6 +18,10 @@ class AppModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  update() {
+    notifyListeners();
+  }
+
   Customer? get customer => currentCustomer;
   RequestData? get request => currentRequest;
 }

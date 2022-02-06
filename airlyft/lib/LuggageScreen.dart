@@ -6,6 +6,7 @@ import 'package:airlyft/MeetingInformationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:airlyft/Data-Manager/Models/AppModel.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';

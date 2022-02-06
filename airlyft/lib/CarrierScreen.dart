@@ -1,13 +1,68 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:airlyft/LuggageScreen.dart';
+import 'package:airlyft/MeetingInformationScreen.dart';
 import 'package:airlyft/MeetingTimeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'CarrierCard.dart';
 import 'PaymentScreen.dart';
 import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class CarrierScreen extends StatelessWidget {
+  Future<void> initPaymentSheet(context,
+      {required String email, required int amount}) async {
+    try {
+      // 1. create payment intent on the server
+      final response = await http.post(
+          Uri.parse(
+              'https://us-central1-airlyft-8565f.cloudfunctions.net/stripePaymentIntentRequest'),
+          body: {
+            'email': email,
+            'amount': amount.toString(),
+          });
+
+      final jsonResponse = jsonDecode(response.body);
+      log(jsonResponse.toString());
+
+      //2. initialize the payment sheet
+      Stripe.publishableKey =
+          "pk_test_51KPtH0FaVswPls9nGZBr9JvaKFQA4G3LB588Vv0dCQnA05Ou13eyTF2hRZMlW3H48gaFkI9XVDBeDDcV0OedjnIz002zY5Wwr3";
+      await Stripe.instance.applySettings();
+      await Stripe.instance.initPaymentSheet(
+        paymentSheetParameters: SetupPaymentSheetParameters(
+          paymentIntentClientSecret: jsonResponse['paymentIntent'],
+          merchantDisplayName: 'Airlyft',
+          customerId: jsonResponse['customer'],
+          customerEphemeralKeySecret: jsonResponse['ephemeralKey'],
+          style: ThemeMode.light,
+          testEnv: true,
+          merchantCountryCode: 'SG',
+        ),
+      );
+
+      await Stripe.instance.presentPaymentSheet();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Payment completed!')),
+      );
+    } catch (e) {
+      if (e is StripeException) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error from Stripe: ${e.error.localizedMessage}'),
+          ),
+        );
+      } else {
+        print(e.toString());
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,9 +148,13 @@ class CarrierScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30.0),
                                     side:
                                         BorderSide(color: Color(0xFFFBEFD9))))),
-                        onPressed: () {
+                        onPressed: () async {
+                          await initPaymentSheet(context,
+                              email: "example@gmail.com", amount: 2000);
+
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => PaymentScreen()));
+                              builder: (context) =>
+                                  MeetingInformationScreen()));
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(

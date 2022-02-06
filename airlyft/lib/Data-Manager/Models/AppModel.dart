@@ -8,6 +8,9 @@ class AppModel extends ChangeNotifier {
       new Customer("firstName", "lastName", "uid");
   static RequestData? currentRequest = RequestData.basic();
 
+  static String? toAirport = "";
+  static String? fromAirport = "";
+
   updateCustomer(Customer? c) {
     currentCustomer = c;
     notifyListeners();
@@ -15,6 +18,12 @@ class AppModel extends ChangeNotifier {
 
   updateRequest(RequestData? c) {
     currentRequest = c;
+    notifyListeners();
+  }
+
+  updateAirport(String? to, String? from) {
+    toAirport = to;
+    fromAirport = from;
     notifyListeners();
   }
 

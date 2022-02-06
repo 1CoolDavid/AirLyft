@@ -1,6 +1,8 @@
+import 'package:airlyft/Data-Manager/locator.dart';
 import 'package:airlyft/LuggageScreen.dart';
 import 'package:airlyft/MapsWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'CarrierCard.dart';
 import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:provider/provider.dart';

@@ -90,12 +90,12 @@ class CarrierScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 20.0, bottom: 10),
                     width: 400,
                     child: Text(
-                      (context.watch<AppModel>().request?.fromAirportCity)!,
+                      (AppModel.toAirport)!,
                       style: TextStyle(
                         fontFamily: "Roboto",
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
+                        fontSize: 25.0,
                         color: Color(0xFF5D5B56),
                       ),
                     )),
@@ -106,7 +106,7 @@ class CarrierScreen extends StatelessWidget {
                   phone: (context.watch<AppModel>().request?.carrier1!.mobile)!,
                   age: (context.watch<AppModel>().request?.carrier1!.age)!
                       .toString(),
-                  price: (context.watch<AppModel>().request?.price)!.toString(),
+                  price: "25.85",
                 ),
                 Container(
                     padding: EdgeInsets.only(top: 10.0, bottom: 0),
@@ -118,12 +118,12 @@ class CarrierScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 20.0, bottom: 10),
                     width: 400,
                     child: Text(
-                      (context.watch<AppModel>().request?.toAirportCity)!,
+                      (AppModel.fromAirport)!,
                       style: TextStyle(
                         fontFamily: "Roboto",
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
+                        fontSize: 25.0,
                         color: Color(0xFF5D5B56),
                       ),
                     )),
@@ -134,24 +134,22 @@ class CarrierScreen extends StatelessWidget {
                   phone: (context.watch<AppModel>().request?.carrier2!.mobile)!,
                   age: (context.watch<AppModel>().request?.carrier2!.age)!
                       .toString(),
-                  price: (context.watch<AppModel>().request?.price)!.toString(),
+                  price: "36.97",
                 ),
                 Container(
                     padding: EdgeInsets.only(top: 20.0),
                     child: TextButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFF5D5B56)),
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
+                                Color.fromARGB(255, 179, 162, 143)),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     side:
                                         BorderSide(color: Color(0xFFFBEFD9))))),
                         onPressed: () async {
                           await initPaymentSheet(context,
-                              email: "example@gmail.com", amount: 2000);
-
+                              email: "example@gmail.com", amount: 6375);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
                                   MeetingInformationScreen()));
@@ -159,7 +157,7 @@ class CarrierScreen extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 90.0),
-                            child: Text('Next',
+                            child: Text('Make Payment',
                                 style: TextStyle(
                                     color: Color(0xFFFBEFD9),
                                     fontSize: 20.0)))))

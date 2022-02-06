@@ -41,8 +41,30 @@ Future<String> arriveAir(date, dep_air, flight_num) async {
 String theDate = "";
 String depAir = "";
 String flightNum = "";
+DateTime selectedDate = DateTime.now();
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _HomeScreenState();
+  }
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  _selectDate(BuildContext context) async {
+    final DateTime? selected = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2025),
+    );
+    if (selected != null && selected != selectedDate) {
+      setState(() {
+        selectedDate = selected;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold,
                               fontSize: 40.0,
-                              color: Color(0xFF5D5B56),
+                              color: Color(0xFF3C3C3C),
                             ),
                           )),
                       Container(
@@ -82,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold,
                               fontSize: 20.0,
-                              color: Color(0xFF5D5B56),
+                              color: Color(0xFF3C3C3C),
                             ),
                           )),
                       Container(
@@ -106,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,
-                              color: Color(0xFF5D5B56),
+                              color: Color(0xFF3C3C3C),
                             ),
                           )),
                       Container(
@@ -134,37 +156,35 @@ class HomeScreen extends StatelessWidget {
                       Container(
                           padding: EdgeInsets.only(top: 40.0),
                           child: Text(
-                            "Enter your flight date(xxxx-xx-xx)",
+                            "Pick your flight date",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontFamily: "Roboto",
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,
-                              color: Color(0xFF5D5B56),
+                              color: Color(0xFF3C3C3C),
                             ),
                           )),
                       Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 35.0),
-                          child: TextFormField(
-                            style: TextStyle(fontSize: 15),
-                            decoration: InputDecoration(
-                              hintText: "",
-                              fillColor: Color(0xFFfbefd9),
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
+                          child: TextButton(
+                            child: Text(
+                              "Date Selected: " +
+                                  selectedDate.month.toString() +
+                                  "/" +
+                                  selectedDate.day.toString() +
+                                  "/" +
+                                  selectedDate.year.toString(),
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color(0xFF087E8B),
                               ),
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "This is a required field";
-                              } else {
-                                return null;
-                              }
+                            onPressed: () {
+                              _selectDate(context);
                             },
-                            onSaved: (saved) => theDate = saved as String,
                           )),
                       Container(
                           padding: EdgeInsets.only(top: 40.0),
@@ -176,13 +196,14 @@ class HomeScreen extends StatelessWidget {
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,
-                              color: Color(0xFF5D5B56),
+                              color: Color(0xFF3C3C3C),
                             ),
                           )),
                       Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 35.0),
                           child: TextFormField(
+                            keyboardType: TextInputType.number,
                             style: TextStyle(fontSize: 15),
                             decoration: InputDecoration(
                               hintText: "",
@@ -202,44 +223,30 @@ class HomeScreen extends StatelessWidget {
                             onSaved: (saved) => flightNum = saved as String,
                           )),
                       Container(
-                          padding: EdgeInsets.only(top: 10.0),
-                          child: Text(
-                            "Book a carrier on arrival?",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontFamily: "Roboto",
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15.0,
-                              color: Color(0xFF5D5B56),
-                            ),
-                          )),
-                      Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.0, horizontal: 0.0),
-                          child: DropdownButton<String>(
-                            items: <String>["Yes", "No"].map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: "Yes",
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (_) {},
-                          )),
-                      Container(
-                          padding: EdgeInsets.only(top: 0.0),
+                          padding: EdgeInsets.only(top: 30.0),
                           child: TextButton(
                               style: ButtonStyle(
+                                  alignment: Alignment.center,
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Color(0xFF5D5B56)),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                          Color.fromARGB(255, 248, 156, 103)),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(30.0),
                                           side: BorderSide(
-                                              color: Color(0xFFFBEFD9))))),
+                                              color: Color(0xff3C3C3C))))),
                               onPressed: () async {
+                                theDate = selectedDate.year.toString() +
+                                    "-" +
+                                    (selectedDate.month > 9
+                                        ? selectedDate.month.toString()
+                                        : "0" + selectedDate.month.toString()) +
+                                    "-" +
+                                    (selectedDate.day > 9
+                                        ? selectedDate.day.toString()
+                                        : "0" + selectedDate.day.toString());
                                 FlightApiCall();
                                 bool? data = _formKey.currentState?.validate();
                                 if (data == null || !data) {
@@ -270,13 +277,28 @@ class HomeScreen extends StatelessWidget {
                                   }
                                 }
                               },
-                              child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10.0, horizontal: 55.0),
-                                  child: Text('Next',
-                                      style: TextStyle(
-                                          color: Color(0xFFFBEFD9),
-                                          fontSize: 20.0)))))
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.airplane_ticket_outlined,
+                                      size: 25,
+                                      color: Color(0xff3C3C3C),
+                                    ),
+                                    Container(
+                                        alignment: Alignment.center,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 20),
+                                        child: Text('Next',
+                                            style: TextStyle(
+                                                color: Color(0xff3C3C3C),
+                                                fontSize: 20.0))),
+                                    Icon(
+                                      Icons.airplane_ticket_outlined,
+                                      size: 25,
+                                      color: Color(0xff3C3C3C),
+                                    ),
+                                  ])))
                     ])))));
   }
 

@@ -1,4 +1,5 @@
 import 'package:airlyft/MapsWidget.dart';
+import 'package:airlyft/MeetingInformationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
@@ -132,7 +133,7 @@ class PaymentPage extends StatelessWidget {
                                         color: Color(0xFFFBEFD9))))),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MapsWidget()));
+                          builder: (context) => MeetingInformationScreen()));
                     },
                     child: Container(
                         padding: const EdgeInsets.symmetric(

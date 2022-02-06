@@ -25,7 +25,7 @@ class CarrierCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
-            color: Color(0xFFF3AD7A),
+            color: Color.fromARGB(255, 248, 156, 103),
             child: Row(
               children: [
                 Container(

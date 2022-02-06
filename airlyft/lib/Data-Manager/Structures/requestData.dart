@@ -14,9 +14,9 @@ class RequestData {
   int checkNumBags = 2;
   int bagTotalWeight = 100;
   Carrier? carrier1 =
-      new Carrier("name", "uid", "123-546-7890", DateTime.now());
+      new Carrier("name", "uid", "896-435-8810", DateTime.now());
   Carrier? carrier2 =
-      new Carrier("name", "uid", "123-546-7890", DateTime.now());
+      new Carrier("name", "uid", "702-960-1531", DateTime.now());
   bool userImHere1 = false;
   bool userImHere2 = false;
   double price = 10;

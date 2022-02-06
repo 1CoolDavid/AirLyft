@@ -10,6 +10,35 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:provider/provider.dart';
 
+final String API_key = "23293200ccc88bfac4f461504cfc69e1";
+
+Future<String> arriveAir(date, dep_air, flight_num) async {
+  // make request
+  var url = Uri.parse("http://api.aviationstack.com/v1/flights?access_key=" +
+      "23293200ccc88bfac4f461504cfc69e1" +
+      "&flight_number=439");
+  final response = await http.get(url);
+
+  // sample info available in response
+  if (response.statusCode == 200) {
+    Map<String, dynamic> data = jsonDecode(response.body);
+    for (int i = 0; i < data["padination"]["count"]; i++) {
+      if (data["data"][i]["flight_date"] == date &&
+          data["data"][i]["departure"]["airport"] == dep_air &&
+          data["data"][i]["flight"]["number"] == flight_num) {
+        return Future.value(data["data"][i]["arrival"]["airport"]);
+      }
+    }
+    return Future.value("");
+  } else {
+    return Future.value("");
+  }
+}
+
+String theDate = "";
+String depAir = "";
+String flightNum = "";
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -62,6 +91,62 @@ class HomeScreen extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.only(top: 40.0),
                       child: Text(
+                        "Enter your flight date(xxxx-xx-xx)",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0,
+                          color: Color(0xFF5D5B56),
+                        ),
+                      )),
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 35.0),
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 15),
+                        decoration: InputDecoration(
+                          hintText: "",
+                          fillColor: Color(0xFFfbefd9),
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onSaved: (saved) => depAir = saved as String,
+                      )),
+                  Container(
+                      padding: EdgeInsets.only(top: 40.0),
+                      child: Text(
+                        "Enter your flight date(xxxx-xx-xx)",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0,
+                          color: Color(0xFF5D5B56),
+                        ),
+                      )),
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 35.0),
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 15),
+                        decoration: InputDecoration(
+                          hintText: "",
+                          fillColor: Color(0xFFfbefd9),
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onSaved: (saved) => flightNum = saved as String,
+                      )),
+                  Container(
+                      padding: EdgeInsets.only(top: 40.0),
+                      child: Text(
                         "Enter your flight number",
                         textAlign: TextAlign.left,
                         style: TextStyle(
@@ -75,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 35.0),
-                      child: TextField(
+                      child: TextFormField(
                         style: TextStyle(fontSize: 15),
                         decoration: InputDecoration(
                           hintText: "",
@@ -85,6 +170,35 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
+                        onSaved: (saved) => theDate = saved as String,
+                      )),
+                  Container(
+                      padding: EdgeInsets.only(top: 40.0),
+                      child: Text(
+                        "Enter your flight number",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0,
+                          color: Color(0xFF5D5B56),
+                        ),
+                      )),
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 35.0),
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 15),
+                        decoration: InputDecoration(
+                          hintText: "",
+                          fillColor: Color(0xFFfbefd9),
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onSaved: (saved) => theDate = saved as String,
                       )),
                   Container(
                       padding: EdgeInsets.only(top: 10.0),

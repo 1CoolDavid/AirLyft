@@ -10,16 +10,17 @@ class LogSign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFfbefd9),
+        backgroundColor: const Color(0xFFfbefd9),
         body: Container(
-            margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 45.0),
+            margin:
+                const EdgeInsets.symmetric(vertical: 50.0, horizontal: 45.0),
             width: 350.0,
             height: 700.0,
             child: Column(
               children: <Widget>[
                 Container(
-                    padding: EdgeInsets.only(top: 70.0),
-                    child: Text(
+                    padding: const EdgeInsets.only(top: 70.0),
+                    child: const Text(
                       "AirLyft",
                       style: TextStyle(
                         fontFamily: "Roboto",
@@ -30,8 +31,8 @@ class LogSign extends StatelessWidget {
                       ),
                     )),
                 Container(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: Text(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: const Text(
                       "Uber for airports",
                       style: TextStyle(
                         fontFamily: "Roboto",
@@ -42,59 +43,59 @@ class LogSign extends StatelessWidget {
                       ),
                     )),
                 Container(
-                    padding: EdgeInsets.only(left: 20.0, top: 40.0),
+                    padding: const EdgeInsets.only(left: 20.0, top: 40.0),
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             image: MemoryImage(base64Decode(traveler)),
                             fit: BoxFit.fill),
                       ),
-                      width: 250,
-                      height: 180,
+                      width: 200,
+                      height: 150,
                     )),
                 Container(
-                    padding: EdgeInsets.only(top: 90.0),
+                    padding: const EdgeInsets.only(top: 90.0),
                     child: TextButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFF5D5B56)),
+                                const Color(0xFF5D5B56)),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0),
-                                    side:
-                                        BorderSide(color: Color(0xFFFBEFD9))))),
+                                    side: const BorderSide(
+                                        color: Color(0xFFFBEFD9))))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => SignUpScreen()));
                         },
                         child: Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 90.0),
-                            child: Text('Sign Up',
+                            child: const Text('Sign Up',
                                 style: TextStyle(
                                     color: Color(0xFFFBEFD9),
                                     fontSize: 20.0))))),
                 Container(
-                    padding: EdgeInsets.only(top: 30.0),
+                    padding: const EdgeInsets.only(top: 30.0),
                     child: TextButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFF5D5B56)),
+                                const Color(0xFF5D5B56)),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0),
-                                    side:
-                                        BorderSide(color: Color(0xFFFBEFD9))))),
+                                    side: const BorderSide(
+                                        color: Color(0xFFFBEFD9))))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => LoginScreen()));
                         },
                         child: Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 90.0),
-                            child: Text('  Login  ',
+                            child: const Text('  Login  ',
                                 style: TextStyle(
                                     color: Color(0xFFFBEFD9),
                                     fontSize: 20.0)))))

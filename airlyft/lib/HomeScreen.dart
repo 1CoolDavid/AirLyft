@@ -1,8 +1,14 @@
+import 'package:airlyft/LuggageScreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'dart:convert';
 import './LoginScreen.dart';
 import "./PaymentScreen.dart";
+import "./LuggageScreen.dart";
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -18,7 +24,10 @@ class HomeScreen extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.only(top: 20.0),
                       child: Text(
-                        "Hey Gaurang",
+                        "Hey " +
+                            (context.watch<AppModel>().customer?.firstName)! +
+                            " " +
+                            (context.watch<AppModel>().customer?.lastName)!,
                         style: TextStyle(
                           fontFamily: "Roboto",
                           fontStyle: FontStyle.normal,
@@ -43,12 +52,11 @@ class HomeScreen extends StatelessWidget {
                       padding: EdgeInsets.only(top: 20.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
                           image: DecorationImage(
                               image: MemoryImage(base64Decode(planeImage)),
                               fit: BoxFit.fill),
                         ),
-                        width: 160,
+                        width: 230,
                         height: 160,
                       )),
                   Container(
@@ -116,8 +124,9 @@ class HomeScreen extends StatelessWidget {
                                       side: BorderSide(
                                           color: Color(0xFFFBEFD9))))),
                           onPressed: () {
+                            FlightApiCall();
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => PaymentScreen()));
+                                builder: (context) => LuggageScreen()));
                           },
                           child: Container(
                               padding: EdgeInsets.symmetric(
@@ -128,6 +137,8 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 20.0)))))
                 ]))));
   }
+
+  void FlightApiCall() {}
 }
 
 final String planeImage =

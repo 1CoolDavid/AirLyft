@@ -1,8 +1,15 @@
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:get_it/get_it.dart';
 
 import 'Structures/customer.dart';
 
 GetIt locator = GetIt.instance;
-void setUpLocator() {}
+Customer? currentCustomer;
 
-void setCustomer(Customer u) {}
+void setUpLocator() {
+  locator.registerSingleton<AppModel>(AppModel());
+}
+
+void setCurrentCustomer(Customer? u) {
+  currentCustomer = u;
+}

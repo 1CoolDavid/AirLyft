@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:airlyft/Data-Manager/Structures/carrier.dart';
 import 'package:airlyft/Data-Manager/Structures/customer.dart';
+import 'package:airlyft/Data-Manager/locator.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
 
@@ -8,20 +11,23 @@ class Database {
     FirebaseDatabase database = FirebaseDatabase.instance;
     DatabaseReference ref = database.ref("customers/$id");
 
-    Customer? customer = await ref.once().then((event) {
+    Object? customer = await ref.once().then((event) {
       if (event.snapshot.exists) {
-        return Customer.fromJson(event.snapshot.value as Map<String, dynamic>);
+        return event.snapshot.value;
       } else {
         return null;
       }
     });
 
-    return customer;
+    if (customer == null) return null;
+    Customer c = Customer.fromJson(jsonDecode(jsonEncode(customer)));
+    print(c.firstName);
+    return c;
   }
 
   static Future<Carrier?> getCarrier(String id) async {
     FirebaseDatabase database = FirebaseDatabase.instance;
-    DatabaseReference ref = database.ref("carriers/$id");
+    DatabaseReference ref = database.ref().child("carriers/$id");
 
     Carrier? carrier = await ref.once().then((event) {
       if (event.snapshot.exists) {
@@ -37,7 +43,7 @@ class Database {
   static Future<bool> setCustomer(Customer customer) async {
     FirebaseDatabase database = FirebaseDatabase.instance;
     String id = customer.uid;
-    DatabaseReference ref = FirebaseDatabase.instance.ref("customers/$id");
+    DatabaseReference ref = database.ref("customers/$id");
 
     return await ref
         .set(customer.toJson())

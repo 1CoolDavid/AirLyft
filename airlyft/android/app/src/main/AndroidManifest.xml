@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.airlyft">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
    <application
         android:label="airlyft"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+android:value="AIzaSyB8TM9e_D9LrDiArW3m7U9eSExbMaltwWw"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

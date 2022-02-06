@@ -1,4 +1,3 @@
-import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:airlyft/LuggageScreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -8,6 +7,7 @@ import "./PaymentScreen.dart";
 import "./LuggageScreen.dart";
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'package:airlyft/Data-Manager/Models/AppModel.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {

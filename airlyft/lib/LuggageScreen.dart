@@ -70,7 +70,7 @@ class LuggageScreen extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.only(top: 30.0, left: 40),
                                   child: Text(
-                                    "From ",
+                                    "Date of Flight ",
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -83,7 +83,7 @@ class LuggageScreen extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.only(top: 10.0, left: 40),
                                   child: Text(
-                                    "Airport ",
+                                    "From Airport ",
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -96,7 +96,7 @@ class LuggageScreen extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.only(top: 30.0, left: 40),
                                   child: Text(
-                                    "To ",
+                                    "Flight Number ",
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
@@ -109,7 +109,7 @@ class LuggageScreen extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.only(top: 10.0, left: 40),
                                   child: Text(
-                                    "Airport ",
+                                    "To Airport ",
                                     style: TextStyle(
                                       fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,

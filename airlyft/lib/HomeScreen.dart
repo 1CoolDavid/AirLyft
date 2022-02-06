@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                       Container(
                           padding: EdgeInsets.only(top: 40.0),
                           child: Text(
-                            "Enter your depart airport",
+                            "Enter the Airport You Depart From",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontFamily: "Roboto",
@@ -134,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                       Container(
                           padding: EdgeInsets.only(top: 40.0),
                           child: Text(
-                            "Enter your flight date(xxxx-xx-xx)",
+                            "Enter your flight date(yyyy-mm-dd)",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontFamily: "Roboto",
